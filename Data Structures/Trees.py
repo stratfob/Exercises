@@ -18,8 +18,6 @@ class BinaryTree():
             if(self.right is not None):
                 self.right.recPrint(current, right + "└── ", right + "│   ")
 
-
-    
     def isEmpty(self):
         return self.root is None
 
@@ -66,7 +64,6 @@ class BinarySearchTree(BinaryTree):
             elif value > currentNode.value:
                 currentNode = currentNode.right
 
- 
 
 elements = [10,5,3,7,20,30]
 bst = BinarySearchTree()
