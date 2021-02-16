@@ -1,4 +1,4 @@
-public class ReverseInteger_7 {
+public class LC7_ReverseInteger {
 
     public static int reverse(int x){
         long result = 0;

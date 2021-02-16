@@ -1,4 +1,4 @@
-public class ZigZagConversion_6{
+public class LC6_ZigZagConversion{
 
     // Naive
     public static String convert(String s, int numRows){
