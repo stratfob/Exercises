@@ -64,16 +64,49 @@ public class LC10_Regex {
         return true;
     }
 
+    // Recursive
+	public static boolean isMatch2(String s, String p) {
+        return isMatch(0,s,0,p);
+    }
+    private static boolean isMatch(int i, String s, int j, String p) { 
+        int stringLength = s.length();
+        int patternLength = p.length();
+        if(j==patternLength) {
+            return i==stringLength;    
+        }
+        char pj = p.charAt(j);
+        if(j+1<patternLength && p.charAt(j+1)=='*') {
+            if(isMatch(i,s,j+2,p)) {
+                return true;
+            }
+            while(i<stringLength && (pj == '.'||pj==s.charAt(i))) {
+                if(isMatch(++i,s,j+2,p)) {
+                    return true;
+                }
+            }
+        } else if(i<stringLength && (s.charAt(i) == pj || pj=='.')) {
+            return isMatch(i+1, s, j+1, p);
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
-        System.out.println(isMatch("aa", "a"));
-        System.out.println(isMatch("aa", "a*"));
-        System.out.println(isMatch("ab", ".*"));
-        System.out.println(isMatch("aab", "c*a*b"));
-        System.out.println(isMatch("mississippi", "mis*is*p*."));
-        System.out.println(isMatch("abbc", "ab*bc"));
-        System.out.println(isMatch("ab", ".*c"));
-        System.out.println(isMatch("aaa", "a*a"));
+        // System.out.println(isMatch("aa", "a"));
+        // System.out.println(isMatch("aa", "a*"));
+        // System.out.println(isMatch("ab", ".*"));
+        // System.out.println(isMatch("aab", "c*a*b"));
+        // System.out.println(isMatch("mississippi", "mis*is*p*."));
+        // System.out.println(isMatch("abbc", "ab*bc"));
+        // System.out.println(isMatch("ab", ".*c"));
+        // System.out.println(isMatch("aaa", "a*a"));
 
+        System.out.println(isMatch2("aa", "a"));
+        System.out.println(isMatch2("aa", "a*"));
+        System.out.println(isMatch2("ab", ".*"));
+        System.out.println(isMatch2("aab", "c*a*b"));
+        System.out.println(isMatch2("mississippi", "mis*is*p*."));
+        System.out.println(isMatch2("abbc", "ab*bc"));
+        System.out.println(isMatch2("ab", ".*c"));
+        System.out.println(isMatch2("aaa", "a*a"));
     }
 }
